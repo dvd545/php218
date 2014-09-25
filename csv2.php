@@ -25,14 +25,13 @@ class csvRead {
          $records[] = $record;
 	 print_r($record);
 	 echo "bug";
- 	 return $records;
-	 return $record;
+ 	 return array($records, $record);
        }
    
     }
    }
 }
-/*
+
 class keyConvert {
   function keyConvert($records, $record) {
     for each($records as $record) {
@@ -43,7 +42,7 @@ class keyConvert {
    }
   }
 }
-*/
+
 //file name -> import
 $fileName = 'test.csv';
 new fileImport($fileName);

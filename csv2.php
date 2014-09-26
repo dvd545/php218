@@ -9,6 +9,11 @@ class fileImport{
      }
      echo "handle closed";
      fclose($handle);
+    }
+
+   function fclose($handle) {
+    
+   
    }
 }
 
@@ -23,31 +28,34 @@ class csvRead {
        }else{
          $record = array_combine($column_heading, $row);
          $records[] = $record;
-	 print_r($record);
-	 echo "bug";
- 	 return array($records, $record);
+	 $results = $record[];
+	 
        }
    
-    }
    }
+    }
+   
 }
 
 class keyConvert {
-  function keyConvert($records, $record) {
-    for each($records as $record) {
-      for each ($record as $key=> $value) {
-        echo $key . ': ' . $value . "<br> \n";
+  function keyConvert($records) {
+//    for each($records as $cord) {
+//      for each ($cord as $key=> $value) {
+//        echo $key . ': ' . $value . "<br> \n";
 	echo "splat";
-	}
-   }
+//	}
+//   }
   }
 }
+
 
 //file name -> import
 $fileName = 'test.csv';
 new fileImport($fileName);
 new csvRead($handle);
-new keyConvert($records, $record);
+
+
+new keyConvert($records);
 
 //imported file handle -> file import
 //csvRead($handle);

@@ -1,8 +1,7 @@
 <?php
 
-
-class csvimport{
-function csvimport($file){
+class importcsv{
+function importcsv($file){
 $first_row = TRUE;
 ini_set('auto_detect_line_endings',TRUE);
 if (($handle = fopen($file, "r")) !== FALSE) {
@@ -10,7 +9,7 @@ if (($handle = fopen($file, "r")) !== FALSE) {
      if($first_row == TRUE) {
        $column_heading = $row;
        $first_row = FALSE;
-     } else {
+      } else {
        $record = array_combine($column_heading, $row);
        $records[] = $record;
      }
@@ -20,11 +19,6 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 
     fclose($handle);
 }
-}
-}
-
-class keyInsert{
-function keyInsert($records)
   foreach($records as $record) {
     foreach($record as $key => $value) {
       echo $key . ': ' . $value .  "</br> \n";
@@ -36,8 +30,7 @@ function keyInsert($records)
 
 
 $file = "test.csv";
-new csvimport($file);
-new keyInsert($records);
+new importcsv($file);
 
 
 

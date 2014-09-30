@@ -1,10 +1,10 @@
 <?php
 //import csv
-class importcsv{
-function importcsv($file){
-$first_row = TRUE;
-$records = array();
-ini_set('auto_detect_line_endings',TRUE);
+class challenge{
+public function importcsv($file){
+  $first_row = TRUE;
+  $records = array();
+  ini_set('auto_detect_line_endings',TRUE);
   if (($handle = fopen($file, "r")) !== FALSE) {
     while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
        if($first_row == TRUE) {
@@ -13,32 +13,37 @@ ini_set('auto_detect_line_endings',TRUE);
        } else {
            $record = array_combine($column_heading, $row);
            $records[] = $record;
-       }
-
+		}
       
    }
 
     fclose($handle);
 }
-new csvrecord($records);
-}
+
+$this->csvrecord($records);
+
 }
 
-class csvrecord{
-function csvrecord($records){
+private function csvrecord($records){
   foreach($records as $record) {
     foreach($record as $key => $value) {
       echo $key . ': ' . $value .  "</br> \n";
     }
     echo '<hr>';
-  }
-}
+    }
+ }
 }
 
 
 
 //merge csv array
 
+//class mergeArray{
+//  function mergeArray($array1, $array2){
+//	$array3[]
+
+//  }
+//}
 //constructor
 
 
@@ -46,9 +51,12 @@ function csvrecord($records){
 //link
 
 
-new importcsv("test.csv");
+//new importcsv("var.csv");
 
-new importcsv("var.csv");
+$obj = new challenge;
+
+$obj->importcsv("var.csv");
+//$obj->csvrecord($records);
 //new csvrecord($records);
 
 

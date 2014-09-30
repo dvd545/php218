@@ -12,10 +12,7 @@ function fileImport($fileName){
      fclose($handle);
     }
 
-   function fclose($handle) {
-    
    
-   }
 
 class fileImport{
    function fileImport($fileName){ 
@@ -46,7 +43,7 @@ class csvRead {
        }else{
          $record = array_combine($column_heading, $row);
          $records[] = $record;
-	 return  $records[];
+	 return  $records;
 	 
        }
    
@@ -56,7 +53,7 @@ class csvRead {
 }
 
 class keyConvert {
-  function keyConvert($records[]) {
+  function keyConvert($records) {
 //    for each($records as $cord) {
 //      for each ($cord as $key=> $value) {
 //        echo $key . ': ' . $value . "<br> \n";
@@ -72,7 +69,7 @@ $fileName = 'test.csv';
 new fileImport($fileName);
 new csvRead($handle);
 
-new keyConvert($records[]);
+new keyConvert($records);
 //merge csv array
 
 

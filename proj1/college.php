@@ -13,6 +13,7 @@ public function importcsv($file){
        } else {
            $record = array_combine($column_heading, $row);
            $records[] = $record;
+           //print_r($records);
 		}
       
    }
@@ -20,11 +21,13 @@ public function importcsv($file){
     fclose($handle);
 }
 
-$this->csvrecord($records);
-
+//$this->csvrecord($records);
+//print_r(array_keys($records));
+return $records;
+    
 }
 
-private function csvrecord($records){
+public function csvrecord($records){
   foreach($records as $record) {
     foreach($record as $key => $value) {
       echo $key . ': ' . $value .  "</br> \n";
@@ -34,6 +37,16 @@ private function csvrecord($records){
  }
 
 
+/*
+class html{
+ public static function html(){
+ 
+        
+ 
+ }
+}
+*/
+    
 
 
 //merge csv array
@@ -56,7 +69,13 @@ private function csvrecord($records){
 
 $obj = new challenge;
 
-$obj->importcsv("var.csv");
+$myrecords = $obj->importcsv("var.csv");
+print_r($myrecords);
+$secondrecord = $obj->importcsv("hd2.csv");
+//    $obj->csvrecord($records);
+
+
+//print_r($obj);
 
 
 //merge arrays

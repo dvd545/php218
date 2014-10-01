@@ -32,21 +32,22 @@ private function csvrecord($records){
     echo '<hr>';
     }
  }
-}
+
 
 
 
 //merge csv array
 
 //class mergeArray{
-//  function mergeArray($array1, $array2){
+  function mergeArray($array1, $array2){
 //	$array3[]
 
 //  }
-//}
+
+}
 //constructor
 
-
+}
 
 //link
 
@@ -56,6 +57,15 @@ private function csvrecord($records){
 $obj = new challenge;
 
 $obj->importcsv("var.csv");
+
+
+//merge arrays
+//key array1(dictionary description)-> key array2(variables title row)
+//put array into single value
+//take single value of array such as description
+//echo college title
+//link for college title
+//total query for college title
 //$obj->csvrecord($records);
 //new csvrecord($records);
 

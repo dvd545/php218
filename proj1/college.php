@@ -13,20 +13,14 @@ public function importcsv($file){
        } else {
            $record = array_combine($column_heading, $row);
            $records[] = $record;
-           //print_r($records);
-		}
-      
+       }
    }
-
     fclose($handle);
 }
-
 //$this->csvrecord($records);
 //print_r(array_keys($records));
 return $records;
-    
 }
-
 public function csvrecord($records){
   foreach($records as $record) {
     foreach($record as $key => $value) {
@@ -39,33 +33,25 @@ public function csvrecord($records){
     //return $records
  }
 
+  public function school_link($school_records){
+    if(empty($_GET)) {
+        $i = 1;
+      foreach($school_records as $school_record) {
+          staticLinks::html($school_records, $i);
+          $i++;
+        /*$nums++;
+        $school_record_num = $nums - 1;
+        $school_records = $nums - 1;
+        echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' .               $school_record_num . '"' . '>School ' . $nums . ' </a>';
 
-    
-    
-    
-    
-/*
-class html{
- public static function html(){
- if(empty($_GET)) {
-    foreach($car_orders as $car_order) {
-      $i++;
-      $car_order_num = $i - 1;
-      echo '<a href=' . '"http://web.njit.edu/~kwilliam/is218/cars.php?car_order=' . $car_order_num . '"' . '>Car Order ' . $i . ' </a>';
-
-      echo '</p>';
-    }
+     echo '</p>'; */
   }
-
-  $car_order = $car_orders[$_GET['car_order']];
-  
-   foreach($car_order as $key => $value) {
-    echo $key . ': ' . $value . "<br>\n";
-   }
-   
- }
 }
-*/  
+
+
+
+}
+    
 
 //merge csv array
 
@@ -82,17 +68,33 @@ class html{
 } //class close
 
 //link
+class staticLinks{
+  static public function html($school_records, $i){
+        $school_record_num = $i - 1;
+        $school_records = $i - 1;
+        echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' .               $school_record_num . '"' . '>School ' . $i . ' </a>';
+
+     echo '</p>';
+  }
+  
+  }
+
+
 
 
 $obj = new challenge;
 
 $myrecords = $obj->importcsv("var.csv");
 $school_records = $obj->importcsv("hd2.csv");
+$variables = array_column($myrecords, 'varTitle');
+print_r($variables);
+
 //$school_records = array_column($schools, 'INSTNM');
 
 //$secondrecord = $obj->csvrecord($secondrecord);
 
 
+/*
 if(empty($_GET)) {
   foreach($school_records as $school_record) {
     $nums++;
@@ -103,6 +105,10 @@ if(empty($_GET)) {
      echo '</p>';
   }
 }
+*/
+
+$display = $obj->school_link($school_records);
+
 $school_record = $school_records[$_GET['school_record']];
 
 foreach($school_record as $key=> $value) {
@@ -113,8 +119,6 @@ foreach($school_record as $key=> $value) {
 
 //print_r($myrecords)
 //$myrecords = $obj->csvrecord($myrecords);
-
-//$variables = array_column($myrecords, 'varTitle', 'varname');
 
 //$varTitle
 //    $obj->csvrecord($records);

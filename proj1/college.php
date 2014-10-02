@@ -87,25 +87,25 @@ class html{
 $obj = new challenge;
 
 $myrecords = $obj->importcsv("var.csv");
-$schools = $obj->importcsv("hd2.csv");
-$school_records = array_column($schools, 'INSTNM');
+$school_records = $obj->importcsv("hd2.csv");
+//$school_records = array_column($schools, 'INSTNM');
 
 //$secondrecord = $obj->csvrecord($secondrecord);
 
 
 if(empty($_GET)) {
-foreach($school_records as $school_record) {
-  $i++;
-  $school_record_num = $i - 1;
-  $school_records = $i -1;
-  echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' . $school_record_num . '"' . '>School ' . $i . ' </a>';
+  foreach($school_records as $school_record) {
+    $nums++;
+    $school_record_num = $nums - 1;
+    $school_records = $nums - 1;
+    echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' . $school_record_num . '"' . '>School ' . $nums . ' </a>';
 
      echo '</p>';
   }
 }
 $school_record = $school_records[$_GET['school_record']];
 
-foreach($school_record as $key=> $value){
+foreach($school_record as $key=> $value) {
   echo $key . ': ' . $value. "<br>\n";
 }
 

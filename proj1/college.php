@@ -32,10 +32,11 @@ public function csvrecord($records){
  }
 
   public function school_link($school_records){
+      $r_name = array_column($school_records, 'INSTNM');
     if(empty($_GET)) {
         $i = 1;
       foreach($school_records as $school_record) {
-          staticLinks::html($school_records, $i);
+          staticLinks::html($school_records, $i, $r_name);
           $i++;
         /*$nums++;
         $school_record_num = $nums - 1;
@@ -60,9 +61,9 @@ public function csvrecord($records){
 
 //link
 class staticLinks{
-  static public function html($school_records, $i){
+  static public function html($school_records, $i, $r_name){
         $school_record_num = $i - 1;
-        echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' .               $school_record_num . '"' . '>School ' . $i . ' </a>';
+       echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' .               $school_record_num . '"' . '>' . $r_name[$i] . ' </a>';
 
      echo '</p>';
   }
@@ -74,18 +75,11 @@ $obj = new challenge;
 $myrecords = $obj->importcsv("var.csv");
 $schools = $obj->importcsv("hd2.csv");
 $variables = array_column($myrecords, 'varTitle', 'varname' );
-//$school_records = $obj->merge($schools, $variables);
-//print_r($school_records);
-//$school_records = $obj->merge($schools, $variables);
-
- 
 
 $display = $obj->school_link($schools);
 $school = $schools[$_GET['school_record']];
 
-
-
-        $vals= array_combine($variables, $school);
+$vals= array_combine($variables, $school);
 
 foreach($vals as $key=>$value){
 
@@ -100,14 +94,6 @@ foreach($vals as $key => $value)
 
 echo '</tr></table>';
   
-
-
-
-
-
-
-
-
 
 
 ?>

@@ -62,7 +62,6 @@ public function csvrecord($records){
 class staticLinks{
   static public function html($school_records, $i){
         $school_record_num = $i - 1;
-        $school_records = $i - 1;
         echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' .               $school_record_num . '"' . '>School ' . $i . ' </a>';
 
      echo '</p>';
@@ -84,14 +83,7 @@ $variables = array_column($myrecords, 'varTitle', 'varname' );
 $display = $obj->school_link($schools);
 $school = $schools[$_GET['school_record']];
 
-/*foreach($school as $record){
-       $school_records = $obj->merge($schools, $variables);
-        print_r($school_records);
-       }
 
-*/
-//foreach($schools as $key => $value) {
-   // foreach($schools as $record){
 
         $vals= array_combine($variables, $school);
 
@@ -100,9 +92,14 @@ foreach($vals as $key=>$value){
   echo $key . ': ' . $value . "<br>\n";
 
        }
-  //          echo $key . ': ' . $value . "<br>\n";
-//           }
+echo '<table><tr>';
 
+foreach($vals as $key => $value)
+   echo '<td>', $key, '</td>
+         <td>', $value, '</td>';
+
+echo '</tr></table>';
+  
 
 
 

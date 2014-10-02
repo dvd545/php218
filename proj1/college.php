@@ -53,6 +53,25 @@ class static_html{
 
      echo '</p>';
   }
+  static public function table($vals){
+    echo "<table border = 1 bordercolor= black cellspacing=0 cellpadding=5 style='font-size:14pt'>";
+echo "<tr>";
+
+
+
+
+foreach($vals as $key => $value){
+   echo '<th>', $key, '</th>';
+   echo '<td>', $value, '</td>';
+    echo '</tr>';
+}
+
+echo '</table>';
+
+
+  }    
+    
+
 }
 
 $obj = new challenge;
@@ -65,23 +84,23 @@ $display = $obj->school_link($schools);
 $school = $schools[$_GET['school_record']];
 
 $vals= array_combine($variables, $school);
-$vals = $obj->cleaner($vals);
+//$vals = $obj->cleaner($vals);
+$table = static_html::table($vals)
 
-/*foreach($vals as $key=>$value){
+/*		echo "<table border = 1 bordercolor= black cellspacing=0 cellpadding=5 style='font-size:14pt'>";
+echo "<tr>";
 
-  echo $key . ': ' . $value . "<br>\n";
 
-       }
+
+
+foreach($vals as $key => $value){
+   echo '<th>', $key, '</th>';
+   echo '<td>', $value, '</td>';
+    echo '</tr>';
+}
+
+echo '</table>';
 
 */
-echo '<table><tr>';
-
-foreach($vals as $key => $value)
-   echo '<td>', $key, '</td>
-         <td>', $value, '</td>';
-
-echo '</tr></table>';
-  
-
 
 ?>

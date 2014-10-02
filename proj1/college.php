@@ -46,10 +46,13 @@ public function csvrecord($records){
   }
 }
 }
-    public function merge($school_records, $variables){
-       foreach($school_records as $record) {
-       $result = array_combine($variables, $record);
+    public function merge($schools, $variables){
+        foreach($schools as $record){
+         $result = array_combine($variables, $record);
+
        }
+       
+       
      return $result;
     }
 
@@ -72,46 +75,41 @@ $obj = new challenge;
 $myrecords = $obj->importcsv("var.csv");
 $schools = $obj->importcsv("hd2.csv");
 $variables = array_column($myrecords, 'varTitle', 'varname' );
+//$school_records = $obj->merge($schools, $variables);
+//print_r($school_records);
+//$school_records = $obj->merge($schools, $variables);
 
-$school_records = $obj->merge($schools, $variables);
+ 
 
+$display = $obj->school_link($schools);
+$school = $schools[$_GET['school_record']];
 
-print_r($school_records);
+/*foreach($school as $record){
+       $school_records = $obj->merge($schools, $variables);
+        print_r($school_records);
+       }
 
+*/
+//foreach($schools as $key => $value) {
+   // foreach($schools as $record){
 
-//$secondrecord = $obj->csvrecord($secondrecord);
+        $vals= array_combine($variables, $school);
 
-//$finalvars= array_combine($variables, $school_records);
+foreach($vals as $key=>$value){
 
-//print_r($finalvars);
+  echo $key . ': ' . $value . "<br>\n";
 
-
-
-// if($first_row == TRUE) {
-        //   $column_heading = $row;
-        //   $first_row = FALSE;
-       //} else {
-         //  $record = array_combine($column_heading, $row);
-          // $records[] = $record;
-//$vars2 = $obj->csvrecord($newvars);
-
-
-$display = $obj->school_link($school_records);
-$school_record = $school_records[$_GET['school_record']];
-
-
-foreach($school_record as $key => $value) {
-      echo $key . ': ' . $value . "<br>\n";
-   }
+       }
+  //          echo $key . ': ' . $value . "<br>\n";
+//           }
 
 
 
 
-//foreach(array_keys($variables) as $key){
-    
-//    echo $variables[$key] . ': ' . $school_records[$value]. "<br>\n";
 
-//}
+
+
+
 
 
 

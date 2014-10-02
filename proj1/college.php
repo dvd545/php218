@@ -7,7 +7,7 @@ public function importcsv($file){
   ini_set('auto_detect_line_endings',TRUE);
   if (($handle = fopen($file, "r")) !== FALSE) {
     while (($row = fgetcsv($handle, 4096, ",")) !== FALSE) {
-       if($first_row == TRUE) {
+      if($first_row == TRUE) {
            $column_heading = $row;
            $first_row = FALSE;
        } else {
@@ -28,9 +28,7 @@ public function csvrecord($records){
         
     }
     echo '<hr>';
-//      return $records
     }
-    //return $records
  }
 
   public function school_link($school_records){
@@ -47,23 +45,13 @@ public function csvrecord($records){
      echo '</p>'; */
   }
 }
-
-
-
 }
-    
-
-//merge csv array
-
-//class mergeArray{
-  function mergeArray($array1, $array2){
-//	$array3[]
-
-//  }
-
-}
-   
-//constructor
+    public function merge($school_records, $variables){
+       foreach($school_records as $record) {
+       $result = array_combine($variables, $record);
+       }
+     return $result;
+    }
 
 } //class close
 
@@ -79,67 +67,52 @@ class staticLinks{
   
   }
 
-
-
-
 $obj = new challenge;
 
 $myrecords = $obj->importcsv("var.csv");
-$school_records = $obj->importcsv("hd2.csv");
-$variables = array_column($myrecords, 'varTitle');
-//$newvars = array_unshift($school_records, $variables);
-//print_r($newvars);
+$schools = $obj->importcsv("hd2.csv");
+$variables = array_column($myrecords, 'varTitle', 'varname' );
 
-//$school_records = array_column($schools, 'INSTNM');
+$school_records = $obj->merge($schools, $variables);
+
+
+print_r($school_records);
+
 
 //$secondrecord = $obj->csvrecord($secondrecord);
 
+//$finalvars= array_combine($variables, $school_records);
 
-/*
-if(empty($_GET)) {
-  foreach($school_records as $school_record) {
-    $nums++;
-    $school_record_num = $nums - 1;
-    $school_records = $nums - 1;
-    echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' . $school_record_num . '"' . '>School ' . $nums . ' </a>';
-
-     echo '</p>';
-  }
-}
-*/
-
-//$display = $obj->school_link($school_records);
-$school_record = $obj->importcsv("hd2.csv");
-//$school_record = $school_records[$_GET['school_record']];
-
-foreach($school_record as $key) {
-  foreach($variables as $value){
-      echo $key . ': ' . $value. "<br>\n";
-      
-      }
-}
+//print_r($finalvars);
 
 
 
-//print_r($myrecords)
-//$myrecords = $obj->csvrecord($myrecords);
+// if($first_row == TRUE) {
+        //   $column_heading = $row;
+        //   $first_row = FALSE;
+       //} else {
+         //  $record = array_combine($column_heading, $row);
+          // $records[] = $record;
+//$vars2 = $obj->csvrecord($newvars);
 
-//$varTitle
-//    $obj->csvrecord($records);
+
+$display = $obj->school_link($school_records);
+$school_record = $school_records[$_GET['school_record']];
 
 
-//print_r($obj);
+foreach($school_record as $key => $value) {
+      echo $key . ': ' . $value . "<br>\n";
+   }
 
 
-//merge arrays
-//key array1(dictionary description)-> key array2(variables title row)
-//put array into single value
-//take single value of array such as description
-//echo college title
-//link for college title
-//total query for college title
-//$obj->csvrecord($records);
-//new csvrecord($records);
+
+
+//foreach(array_keys($variables) as $key){
+    
+//    echo $variables[$key] . ': ' . $school_records[$value]. "<br>\n";
+
+//}
+
 
 
 ?>

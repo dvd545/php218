@@ -47,16 +47,25 @@ public function csvrecord($records){
 /*
 class html{
  public static function html(){
- 
-        
- 
+ if(empty($_GET)) {
+    foreach($car_orders as $car_order) {
+      $i++;
+      $car_order_num = $i - 1;
+      echo '<a href=' . '"http://web.njit.edu/~kwilliam/is218/cars.php?car_order=' . $car_order_num . '"' . '>Car Order ' . $i . ' </a>';
+
+      echo '</p>';
+    }
+  }
+
+  $car_order = $car_orders[$_GET['car_order']];
+  
+   foreach($car_order as $key => $value) {
+    echo $key . ': ' . $value . "<br>\n";
+   }
+   
  }
 }
-*/
-    
-
-    
-    
+*/  
 
 //merge csv array
 
@@ -78,12 +87,34 @@ class html{
 $obj = new challenge;
 
 $myrecords = $obj->importcsv("var.csv");
-$secondrecord = $obj->importcsv("hd2.csv");
+$schools = $obj->importcsv("hd2.csv");
+$school_records = array_column($schools, 'INSTNM');
+
+//$secondrecord = $obj->csvrecord($secondrecord);
+
+
+if(empty($_GET)) {
+foreach($school_records as $school_record) {
+  $i++;
+  $school_record_num = $i - 1;
+  $school_records = $i -1;
+  echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' . $school_record_num . '"' . '>School ' . $i . ' </a>';
+
+     echo '</p>';
+  }
+}
+$school_record = $school_records[$_GET['school_record']];
+
+foreach($school_record as $key=> $value){
+  echo $key . ': ' . $value. "<br>\n";
+}
+
+
+
 //print_r($myrecords)
 //$myrecords = $obj->csvrecord($myrecords);
 
-$names = array_column($myrecords, 'varTitle', 'varname');
-print_r($names);
+//$variables = array_column($myrecords, 'varTitle', 'varname');
 
 //$varTitle
 //    $obj->csvrecord($records);

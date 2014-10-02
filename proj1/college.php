@@ -6,7 +6,7 @@ public function importcsv($file){
   $records = array();
   ini_set('auto_detect_line_endings',TRUE);
   if (($handle = fopen($file, "r")) !== FALSE) {
-    while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
+    while (($row = fgetcsv($handle, 4096, ",")) !== FALSE) {
        if($first_row == TRUE) {
            $column_heading = $row;
            $first_row = FALSE;
@@ -30,13 +30,20 @@ return $records;
 public function csvrecord($records){
   foreach($records as $record) {
     foreach($record as $key => $value) {
-      echo $key . ': ' . $value .  "</br> \n";
+     echo $key . ': ' . $value .  "</br> \n";
+        
     }
     echo '<hr>';
+//      return $records
     }
+    //return $records
  }
 
 
+    
+    
+    
+    
 /*
 class html{
  public static function html(){
@@ -48,6 +55,8 @@ class html{
 */
     
 
+    
+    
 
 //merge csv array
 
@@ -58,20 +67,25 @@ class html{
 //  }
 
 }
+   
 //constructor
 
-}
+} //class close
 
 //link
 
 
-//new importcsv("var.csv");
-
 $obj = new challenge;
 
 $myrecords = $obj->importcsv("var.csv");
-print_r($myrecords);
 $secondrecord = $obj->importcsv("hd2.csv");
+//print_r($myrecords)
+//$myrecords = $obj->csvrecord($myrecords);
+
+$names = array_column($myrecords, 'varTitle', 'varname');
+print_r($names);
+
+//$varTitle
 //    $obj->csvrecord($records);
 
 

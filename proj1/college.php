@@ -87,7 +87,8 @@ $obj = new challenge;
 $myrecords = $obj->importcsv("var.csv");
 $school_records = $obj->importcsv("hd2.csv");
 $variables = array_column($myrecords, 'varTitle');
-print_r($variables);
+//$newvars = array_unshift($school_records, $variables);
+//print_r($newvars);
 
 //$school_records = array_column($schools, 'INSTNM');
 
@@ -107,12 +108,15 @@ if(empty($_GET)) {
 }
 */
 
-$display = $obj->school_link($school_records);
+//$display = $obj->school_link($school_records);
+$school_record = $obj->importcsv("hd2.csv");
+//$school_record = $school_records[$_GET['school_record']];
 
-$school_record = $school_records[$_GET['school_record']];
-
-foreach($school_record as $key=> $value) {
-  echo $key . ': ' . $value. "<br>\n";
+foreach($school_record as $key) {
+  foreach($variables as $value){
+      echo $key . ': ' . $value. "<br>\n";
+      
+      }
 }
 
 

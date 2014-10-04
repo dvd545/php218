@@ -25,12 +25,13 @@ class challenge{
  }
 
  public function school_link($school_records){ //creates links
-    $r_name = array_column($school_records, 'INSTNM');
+    //$r_name = array_column($school_records, 'INSTNM');
     if(empty($_GET)) {
-        $i = 1;
+        $i = - 1;
       foreach($school_records as $school_record) {
-          static_html::links($school_records, $i, $r_name);
-          $i++;  
+		  $i++;
+          static_html::links($school_record, $i);
+            
        }
      }
   }
@@ -51,19 +52,21 @@ class challenge{
 } //class close
 
 class static_html{
-  static public function links($school_records, $i, $r_name){ //link creation function
-     $school_record_num = $i ;
-     echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' .               $school_record_num . '"' . '>' . $r_name[$i] . ' </a>';
+  static public function links($school_record, $i){ //link creation function
+		//foreach($school_record as $record){
+	  $school_record_num = $i ;
+     echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' .               $school_record_num . '"' . '>' . $school_record['Institution (entity) name'] . ' </a>';
 
      echo '</p>';
+	//	}
   }
   
     
-  static public function table($vals,$schools){ //table creation function
+  static public function table($vals){ //table creation function
        echo "<table border = 1 bordercolor= black cellspacing=0 cellpadding=5 style='font-size:14pt'>";
      echo "<tr>";
 
-	$school = $schools[$_GET['school_record']];
+	$school = $vals[$_GET['school_record']];
   
     foreach($school as $key => $value){
         echo '<th>', $key, '</th>';
@@ -83,11 +86,9 @@ $obj = new challenge; //create new object
 
 $myrecords = $obj->importcsv("var.csv"); //import first csv into array
 $schools = $obj->importcsv("hd2.csv"); //import secont csv into seperate array
-
-
-$display = $obj->school_link($schools); //creates links 
 $vals = $obj->array_replace($myrecords, $schools, 'varname', 'varTitle');
-$table = static_html::table($vals, $schools)  //create table
+$display = $obj->school_link($vals); //creates links 
+$table = static_html::table($vals)  //create table
 
 
 ?>

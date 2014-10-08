@@ -25,7 +25,6 @@ class challenge{
  }
 
  public function school_link($school_records){ //creates links
-    //$r_name = array_column($school_records, 'INSTNM');
     if(empty($_GET)) {
         $i = - 1;
       foreach($school_records as $school_record) {
@@ -55,7 +54,7 @@ class static_html{
   static public function links($school_record, $i){ //link creation function
 		//foreach($school_record as $record){
 	  $school_record_num = $i ;
-     echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' .               $school_record_num . '"' . '>' . $school_record['Institution (entity) name'] . ' </a>';
+     echo '<a href=' . '"http://web.njit.edu/~dcs24/college.php?school_record=' .               $school_record_num . '"' . '>' . $school_record['Institution (entity) name'] . ' </a>';
 
      echo '</p>';
 	//	}

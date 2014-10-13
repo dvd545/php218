@@ -2,8 +2,24 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
 
-class challenge{
+//include 'code/loadcalling.php';
 
+spl_autoload_register( function ($className) {
+    $className = ltrim($className, '\\');
+    $fileName  = '';
+    $namespace = '';
+    if ($lastNsPos = strrpos($className, '\\')) {
+        $namespace = substr($className, 0, $lastNsPos);
+        $className = substr($className, $lastNsPos + 1);
+        $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+    }
+    $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+
+    require $fileName;
+});
+
+class challenge{
+/*
   public function importcsv($file){ //file import
     $first_row = TRUE;
     $records = array();
@@ -22,14 +38,14 @@ class challenge{
    }
 
    return $records;
- }
+ } 
 
  public function school_link($school_records){ //creates links
     if(empty($_GET)) {
         $i = - 1;
       foreach($school_records as $school_record) {
 		  $i++;
-          static_html::links($school_record, $i);
+          Html::links($school_record, $i);
             
        }
      }
@@ -46,10 +62,11 @@ class challenge{
 	   }
 	   return $vals;
    } 	
-	
+	*/
 
 } //class close
 
+/*
 class static_html{
   static public function links($school_record, $i){ //link creation function
 		//foreach($school_record as $record){
@@ -78,9 +95,9 @@ class static_html{
   }
     
 }
+*/
 
-
-
+/*
 $obj = new challenge; //create new object
 
 $myrecords = $obj->importcsv("var.csv"); //import first csv into array
@@ -88,6 +105,22 @@ $schools = $obj->importcsv("hd2.csv"); //import secont csv into seperate array
 $vals = $obj->array_replace($myrecords, $schools, 'varname', 'varTitle');
 $display = $obj->school_link($vals); //creates links 
 $table = static_html::table($vals)  //create table
+*/
+ /*
+$obj = new Filemanipulate();
+$table =  new Html();
+*/
+
+$main = new Classes\Models\filemanipulate();
+$html = new Classes\Models\html();
+$myrecords = $main->importcsv("var.csv"); //import first csv into array
+$schools = $main->importcsv("hd2.csv"); //import secont csv into seperate array
+$vals = $main->array_replace($myrecords, $schools, 'varname', 'varTitle');
+$display = $main->school_link($vals); //creates links 
+$table = $html->table($vals)  //create table
+
+
+
 
 
 ?>

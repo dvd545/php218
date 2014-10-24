@@ -1,7 +1,12 @@
 <?php
 namespace Classes\Models;
-    
-class Html{
+
+interface html_interface{
+    public static function links($school_record, $i);
+    public static function table($vals);
+}
+
+class html implements html_interface {
     static public function links($school_record, $i){ //link creation function
 	       $school_record_num = $i ;
             /*echo '<a href=' . '"http://web.njit.edu/~dcs24/college.php?school_record=' .                            $school_record_num . '"' . '>' . $school_record['Institution (entity) name'] . '                    </a>'; */ 
@@ -27,8 +32,7 @@ class Html{
         echo '</table>';
 
     }
-    
-    
+ 
 
 }
 

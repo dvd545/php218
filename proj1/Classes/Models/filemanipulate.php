@@ -2,8 +2,14 @@
 namespace Classes\Models;
 
 
-class Filemanipulate{
- public function importcsv($file){ //file import
+interface Filemanipulate_interface{
+    public static function importcsv($file); 
+    public static function school_link($school_records);
+    
+}
+ 
+class Filemanipulate implements Filemanipulate_interface {
+ public static function importcsv($file){ //file import
     $first_row = TRUE;
     $records = array();
     ini_set('auto_detect_line_endings',TRUE);
@@ -22,8 +28,7 @@ class Filemanipulate{
 
    return $records;
  }
-
- public function school_link($school_records){ //creates links
+ public static function school_link($school_records){ //creates links
     if(empty($_GET)) {
         $i = - 1;
       foreach($school_records as $school_record) {
@@ -33,21 +38,6 @@ class Filemanipulate{
        }
      }
   }
-
-   public function array_replace($arrays1, $arrays2, $key_1, $value_1){
-      foreach($arrays1 as $array){
-		
-	     $replace[$array[$key_1]]=  $array[$value_1];		  
-      }
-      foreach($arrays2 as $array2 ){
-		  $vals[] = array_combine($replace,$array2);
-
-	   }
-	   return $vals;
-   } 	
-	
-    
-    
 }
 
 

@@ -33,7 +33,7 @@ class Filemanipulate implements Filemanipulate_interface {
         $i = - 1;
       foreach($school_records as $school_record) {
 		  $i++;
-          Html::links($school_record, $i);
+          html::links($school_record, $i);
             
        }
      }

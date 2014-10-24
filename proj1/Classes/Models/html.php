@@ -9,9 +9,12 @@ interface html_interface{
 class html implements html_interface {
     static public function links($school_record, $i){ //link creation function
 	       $school_record_num = $i ;
-            /*echo '<a href=' . '"http://web.njit.edu/~dcs24/college.php?school_record=' .                            $school_record_num . '"' . '>' . $school_record['Institution (entity) name'] . '                    </a>'; */ 
+            
+            echo '<a href=' . '"http://web.njit.edu/~dcs24/college.php?school_record=' .                            $school_record_num . '"' . '>' . $school_record['Institution (entity) name'] . '                    </a>'; 
         //switch for localhost
+            /*
             echo '<a href=' . '"http://localhost/php218/proj1/college.php?school_record=' .                            $school_record_num . '"' . '>' . $school_record['Institution (entity) name'] . '                    </a>';
+            */
 
         
             echo '</p>';

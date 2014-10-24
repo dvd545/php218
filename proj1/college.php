@@ -18,8 +18,9 @@ spl_autoload_register( function ($className) {
     require $fileName;
 });
 
-class challenge{
 /*
+class challenge{
+
   public function importcsv($file){ //file import
     $first_row = TRUE;
     $records = array();
@@ -62,11 +63,11 @@ class challenge{
 	   }
 	   return $vals;
    } 	
-	*/
+	
 
 } //class close
 
-/*
+
 class static_html{
   static public function links($school_record, $i){ //link creation function
 		//foreach($school_record as $record){
@@ -111,13 +112,16 @@ $obj = new Filemanipulate();
 $table =  new Html();
 */
 
+
 $main = new Classes\Models\filemanipulate();
-$html = new Classes\Models\html();
+//$html = new Classes\Models\html();
+
+
 $myrecords = $main->importcsv("var.csv"); //import first csv into array
 $schools = $main->importcsv("hd2.csv"); //import secont csv into seperate array
-$vals = $main->array_replace($myrecords, $schools, 'varname', 'varTitle');
+$vals = \Classes\Models\arrayreplace::array_replace($myrecords, $schools, 'varname', 'varTitle');
 $display = $main->school_link($vals); //creates links 
-$table = $html->table($vals)  //create table
+$table = \Classes\Models\html::table($vals)  //create table
 
 
 
